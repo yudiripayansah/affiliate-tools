@@ -39,3 +39,43 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ---- tambahan: file sensitif / lokal ----
+# template env tanpa secret boleh di-commit
+!.env.example
+
+# kunci & kredensial
+*.key
+*.p12
+*.pfx
+*.crt
+*-service-account*.json
+credentials*.json
+
+# Supabase CLI (state lokal, bisa berisi token)
+supabase/.temp/
+supabase/.branches/
+
+# dump / backup database (bisa berisi data klik & IP hash)
+*.dump
+*.sql.gz
+*.backup
+/backups/
+
+# log
+*.log
+/logs/
+
+# editor & Claude Code (setting lokal per orang)
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.claude/settings.local.json
+
+# dokumen markdown: catatan perencanaan tidak ikut ke git; README & AGENTS tetap
+*.md
+!README.md
+!AGENTS.md
+
+# data sementara import produk
+.import/
