@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getActiveBanners, getCategories, getHomeSections } from '@/lib/catalog';
-import ProductCard, { railItem } from '@/components/site/ProductCard';
+import ProductCard from '@/components/site/ProductCard';
 import Rail from '@/components/site/Rail';
 import EditorPicks from '@/components/site/EditorPicks';
 import BannerCarousel from '@/components/site/BannerCarousel';
@@ -41,10 +41,10 @@ function Hero({ hero, side }) {
       <h1 className="sr-only">Fauqa — rekomendasi produk pilihan dengan perbandingan harga</h1>
       <BannerCarousel banners={hero} className={side.length ? 'md:col-span-2 md:aspect-[8/3]' : 'md:col-span-3 md:aspect-[4/1]'} />
       {side.length > 0 && (
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
+        <div className="grid gap-3">
           {side.map((b) => (
-            <Link key={b.id} href={b.href} className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-surface md:aspect-auto">
-              <Img src={b.image_desktop} alt={b.title} sizes="(min-width: 768px) 33vw, 50vw" />
+            <Link key={b.id} href={b.href} className="relative aspect-[8/3] overflow-hidden rounded-2xl bg-surface md:aspect-auto">
+              <Img src={b.image_desktop} alt={b.title} sizes="(min-width: 768px) 33vw, 100vw" />
             </Link>
           ))}
         </div>
@@ -93,19 +93,19 @@ export default async function HomePage() {
 
       {home.promo.length > 0 && (
         <Rail title="Lagi Diskon" href="/promo" linkLabel="Semua promo">
-          {home.promo.map((p, i) => <li key={p.slug} className={railItem}><ProductCard product={p} priority={!hero.length && i < 2} /></li>)}
+          {home.promo.map((p, i) => <ProductCard key={p.slug} product={p} priority={!hero.length && i < 2} />)}
         </Rail>
       )}
 
       {home.rails.map((r) => (
         <Rail key={r.category.slug} title={r.category.name} href={`/c/${r.category.slug}`}>
-          {r.items.map((p) => <li key={p.slug} className={railItem}><ProductCard product={p} /></li>)}
+          {r.items.map((p) => <ProductCard key={p.slug} product={p} />)}
         </Rail>
       ))}
 
       {!home.featured.length && !home.promo.length && !home.rails.length && home.latest.length > 0 && (
         <Rail title="Baru masuk">
-          {home.latest.map((p) => <li key={p.slug} className={railItem}><ProductCard product={p} /></li>)}
+          {home.latest.map((p) => <ProductCard key={p.slug} product={p} />)}
         </Rail>
       )}
 

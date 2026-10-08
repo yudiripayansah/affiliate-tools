@@ -2,7 +2,7 @@
 
 // Pilihan Editor dengan tab per kategori (pola "What's New" di referensi).
 import { useState } from 'react';
-import ProductCard, { railItem } from './ProductCard';
+import ProductCard from './ProductCard';
 import Rail from './Rail';
 
 export default function EditorPicks({ products, categories }) {
@@ -13,6 +13,7 @@ export default function EditorPicks({ products, categories }) {
   return (
     <Rail
       title="Pilihan Editor"
+      resetKey={tab}
       actions={
         tabs.length > 2 && (
           <div role="tablist" aria-label="Kategori pilihan editor" className="no-scrollbar -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 md:mx-0 md:px-0">
@@ -32,7 +33,7 @@ export default function EditorPicks({ products, categories }) {
         )
       }
     >
-      {shown.map((p) => <li key={p.slug} className={railItem}><ProductCard product={p} /></li>)}
+      {shown.map((p) => <ProductCard key={p.slug} product={p} />)}
     </Rail>
   );
 }

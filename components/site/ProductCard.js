@@ -41,7 +41,6 @@ export default function ProductCard({ product: p, priority = false, heading: H =
 }
 
 // Lebar item rail: 2,2 kartu terlihat di mobile, 4,5 di desktop (mengisyaratkan bisa digeser).
-export const railItem = 'w-[44%] shrink-0 snap-start sm:w-[30%] md:w-[calc((100%-1.5rem)/3)] lg:w-[calc((100%-2.25rem)/4)] xl:w-[calc((100%-3rem)/5)]';
 
 export function ProductGrid({ products, priorityFirst = 0, heading }) {
   return (
